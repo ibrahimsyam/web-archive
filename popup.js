@@ -6,7 +6,13 @@ document.addEventListener("DOMContentLoaded", function () {
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     const currentTab = tabs[0];
     if (currentTab) {
-      urlInput.value = currentTab.url;
+       var currentTab2 = currentTab[0];
+       var url = new URL(currentTab.url);
+       var domain = url.hostname;
+       var parts = domain.split('.');
+       var topLevelDomain = parts[parts.length - 2] + '.' + parts[parts.length - 1];
+       urlInput.value = topLevelDomain;
+
     }
   });
 
